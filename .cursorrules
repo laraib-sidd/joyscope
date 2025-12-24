@@ -1,0 +1,103 @@
+# Controller Tester Development Rules
+
+## Architecture Principles
+
+- All browser APIs (Gamepad API, localStorage, vibration) must go through service abstractions in `src/services/`
+- State management uses Zustand with persist middleware for user data
+- Components follow atomic design: atoms in `visuals/`, molecules/organisms at component root
+- All thresholds and magic numbers must be defined in `src/lib/constants.ts`
+
+## Code Style
+
+- Always use `useShallow` from zustand/shallow when selecting multiple store values
+- All async functions must have try-catch with proper error logging via `src/lib/errorReporter.ts`
+- Use `useId()` for any DOM IDs that could have multiple instances (SVG gradients, form labels)
+- Prefer named exports over default exports for better refactoring support
+- All memo components must have a displayName for React DevTools
+
+## Type Safety
+
+- No `any` types allowed - use `unknown` with type guards if needed
+- All component props must have explicit TypeScript types (no inline object types)
+- Gamepad data always uses `NormalizedGamepad` type from `src/types/gamepad.ts`
+- Extended browser types go in `src/types/gamepadExtended.d.ts`
+- All functions must have explicit return types
+
+## Performance
+
+- Use `memo()` for all visualization components that receive object props
+- Provide custom comparison functions for memo when props are objects/arrays
+- Debounce user inputs that trigger state updates (100ms minimum for sliders)
+- Idle polling loops when no active work (no RAF without connected controllers)
+- Use `useCallback` for all event handlers passed to child components
+- Use `useMemo` for expensive computations and derived state
+
+## Accessibility (WCAG 2.1 AA Compliance)
+
+- All interactive elements MUST have aria-label or aria-labelledby
+- All buttons MUST be keyboard accessible (Enter and Space activation)
+- All form inputs MUST have associated labels with htmlFor
+- Use aria-live="polite" for dynamic content updates (test results, connection status)
+- Respect prefers-reduced-motion media query
+- Maintain visible focus indicators (focus-visible CSS)
+- Provide skip-to-main-content link
+- Color contrast ratio minimum 4.5:1 for text
+
+## Testing
+
+- All utility functions must have unit tests (*.test.ts co-located)
+- All service abstractions must have unit tests with mocks
+- Test files use Vitest with jsdom environment
+- Use simulation mode for integration tests (no real hardware needed)
+- Minimum coverage: services 90%, utilities 80%, state 70%
+
+## Error Handling
+
+- NEVER swallow errors silently in catch blocks
+- Log errors with console.error in development
+- Show user-friendly messages in UI for all error states
+- Wrap localStorage/JSON operations in try-catch
+- All async operations must have loading and error states in UI
+
+## State Management
+
+- Use Zustand persist middleware only for user preferences and session history
+- Transient UI state (loading, errors) stays in component state
+- Timeline events stored in dedicated timelineSlice with size limits
+- Clear timeouts/intervals on component unmount
+- Use immer middleware for complex state updates if needed
+
+## File Organization
+
+```
+src/
+├── components/       # React components
+│   ├── Shell/       # Layout components (Header, Sidebar, Page)
+│   └── visuals/     # Data visualization components
+├── hooks/           # Custom React hooks
+├── lib/             # Business logic, utilities, constants
+├── pages/           # Route-level page components
+├── services/        # Browser API abstractions
+├── simulators/      # Mock/virtual gamepad for testing
+├── state/           # Zustand store slices
+├── theme/           # Design tokens, motion presets
+├── types/           # TypeScript type definitions
+└── utils/           # Pure utility functions
+```
+
+## Naming Conventions
+
+- Components: PascalCase (e.g., `ButtonMatrix.tsx`)
+- Hooks: camelCase with `use` prefix (e.g., `useGamepads.ts`)
+- Services: camelCase with `Service` suffix (e.g., `gamepadService.ts`)
+- State slices: camelCase with `Slice` suffix (e.g., `controllerSlice.ts`)
+- Constants: SCREAMING_SNAKE_CASE (e.g., `DRIFT_THRESHOLD`)
+- Types: PascalCase (e.g., `NormalizedGamepad`)
+
+## Documentation
+
+- All exported functions must have JSDoc comments
+- Complex logic must have inline comments explaining "why"
+- Keep technical-architecture.md in sync with actual implementation
+- README should include setup, development, and testing instructions
+

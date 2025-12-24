@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   CSS Variables
+   ============================================================================ */
+
+:root {
+  --bg: #0a0a0f;
+  --accent: 266 85% 70%;
+  --text-primary: 220 40% 98%;
+  font-feature-settings: 'ss01' on, 'cv02' on;
+  color-scheme: dark;
+}
+
+/* ============================================================================
+   Base Styles
+   ============================================================================ */
+
+html {
+  background-color: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: hsl(var(--text-primary));
+  overflow: hidden; /* Page content scrolls inside .app-scroll */
+}
+
+#root {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ============================================================================
+   Accessibility - Focus Styles
+   ============================================================================ */
+
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px hsla(var(--accent), 0.25);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px hsla(var(--accent), 0.15);
+}
+
+a:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ============================================================================
+   Skip Link (Accessibility)
+   ============================================================================ */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  background: hsl(var(--accent));
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 1rem 1rem;
+  z-index: 9999;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ============================================================================
+   Screen Reader Only
+   ============================================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================================
+   Reduced Motion
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================================
+   High Contrast Mode
+   ============================================================================ */
+
+@media (prefers-contrast: high) {
+  :root {
+    --accent: 266 100% 65%;
+  }
+
+  button,
+  [role="button"] {
+    border-width: 2px;
+  }
+
+  *:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+/* ============================================================================
+   Range Slider - Cool Gradient Style
+   ============================================================================ */
+
+input[type="range"] {
+  --range-progress: 50%;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: linear-gradient(
+    90deg,
+    #a855f7 0%,
+    #ec4899 var(--range-progress),
+    #1e1e2a var(--range-progress),
+    #1e1e2a 100%
+  ) !important;
+  cursor: pointer;
+  height: 10px !important;
+  border-radius: 5px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 0 12px rgba(168, 85, 247, 0.2) !important;
+  transition: box-shadow 0.2s ease !important;
+}
+
+input[type="range"]:hover {
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(168, 85, 247, 0.4) !important;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 10px !important;
+  background: transparent !important;
+  border-radius: 5px !important;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 24px !important;
+  height: 24px !important;
+  margin-top: -7px !important;
+  background: linear-gradient(145deg, #ffffff, #e0e0e0) !important;
+  border-radius: 50% !important;
+  border: 3px solid #a855f7 !important;
+  box-shadow: 
+    0 0 15px rgba(168, 85, 247, 0.6),
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+  cursor: grab !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 
+    0 0 25px rgba(168, 85, 247, 0.8),
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing !important;
+  transform: scale(1.05) !important;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 10px !important;
+  background: #1e1e2a !important;
+  border-radius: 5px !important;
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 10px !important;
+  background: linear-gradient(90deg, #a855f7, #ec4899) !important;
+  border-radius: 5px 0 0 5px !important;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px !important;
+  height: 24px !important;
+  background: linear-gradient(145deg, #ffffff, #e0e0e0) !important;
+  border-radius: 50% !important;
+  border: 3px solid #a855f7 !important;
+  box-shadow: 
+    0 0 15px rgba(168, 85, 247, 0.6),
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+  cursor: grab !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.1) !important;
+}
+
+input[type="range"]:focus-visible {
+  outline: none !important;
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 0 0 3px rgba(168, 85, 247, 0.4),
+    0 0 25px rgba(168, 85, 247, 0.5) !important;
+}
+
+input[type="range"]:focus-visible::-webkit-slider-thumb {
+  box-shadow: 
+    0 0 30px rgba(168, 85, 247, 1),
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ============================================================================
+   Button & Form Base
+   ============================================================================ */
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+label {
+  display: block;
+}
+
+textarea {
+  font-family: inherit;
+  resize: vertical;
+}
+
+/* ============================================================================
+   App Scroll Container - Always-Visible Scrollbar
+   ============================================================================ */
+
+.app-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #a855f7 #1a1a24;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.app-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.app-scroll::-webkit-scrollbar-track {
+  background: #1a1a24;
+}
+
+.app-scroll::-webkit-scrollbar-thumb {
+  background: #a855f7;
+  border-radius: 5px;
+  border: 2px solid #1a1a24;
+}
+
+.app-scroll::-webkit-scrollbar-thumb:hover {
+  background: #c084fc;
+}
