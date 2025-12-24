@@ -1,4 +1,4 @@
-# CtrlLab PRO 🎮
+# JoyScope 🎮
 
 Professional browser-based gamepad diagnostics and testing tool for Xbox, PlayStation, Switch, and standard gamepads.
 
@@ -25,8 +25,8 @@ Professional browser-based gamepad diagnostics and testing tool for Xbox, PlaySt
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/controller_tester.git
-cd controller_tester
+git clone https://github.com/YOUR_USERNAME/joyscope.git
+cd joyscope
 
 # Install dependencies
 pnpm install

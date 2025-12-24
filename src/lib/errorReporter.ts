@@ -35,14 +35,14 @@ export const reportError = (
   // Always log to console in development
   switch (severity) {
     case 'info':
-      console.info('[Controller Tester]', logData);
+      console.info('[JoyScope]', logData);
       break;
     case 'warning':
-      console.warn('[Controller Tester]', logData);
+      console.warn('[JoyScope]', logData);
       break;
     case 'error':
     case 'critical':
-      console.error('[Controller Tester]', logData);
+      console.error('[JoyScope]', logData);
       break;
   }
 

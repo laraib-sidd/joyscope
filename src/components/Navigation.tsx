@@ -1,5 +1,5 @@
 /**
- * Navigation - Top navigation bar with CtrlLab PRO branding
+ * Navigation - Top navigation bar with JoyScope branding
  */
 
 import { memo } from 'react';
@@ -23,7 +23,7 @@ export const Navigation = memo(function Navigation({ controllerCount }: Navigati
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-600">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500">
             <svg
               className="h-5 w-5 text-white"
               fill="none"
@@ -31,21 +31,16 @@ export const Navigation = memo(function Navigation({ controllerCount }: Navigati
               stroke="currentColor"
               strokeWidth={2}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 19l-7-7 7-7"
-              />
-              <circle cx="8" cy="12" r="2" fill="currentColor" />
-              <circle cx="16" cy="12" r="2" fill="currentColor" />
+              {/* Scope crosshair */}
+              <circle cx="12" cy="12" r="8" />
+              <circle cx="12" cy="12" r="3" fill="currentColor" />
+              <line x1="12" y1="2" x2="12" y2="6" strokeLinecap="round" />
+              <line x1="12" y1="18" x2="12" y2="22" strokeLinecap="round" />
+              <line x1="2" y1="12" x2="6" y2="12" strokeLinecap="round" />
+              <line x1="18" y1="12" x2="22" y2="12" strokeLinecap="round" />
             </svg>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-semibold text-white">CtrlLab</span>
-            <span className="rounded bg-white/10 px-1.5 py-0.5 text-xs font-medium text-white/60">
-              PRO
-            </span>
-          </div>
+          <span className="text-lg font-semibold text-white">JoyScope</span>
         </Link>
 
         {/* Nav Links */}

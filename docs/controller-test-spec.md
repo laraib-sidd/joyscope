@@ -1,4 +1,4 @@
-# CtrlLab Pro – Scope & Success Criteria
+# JoyScope – Scope & Success Criteria
 
 ## Objectives
 - Provide a browser-based harness that validates whether a standard Gamepad API controller works end-to-end (connection, input, feedback).

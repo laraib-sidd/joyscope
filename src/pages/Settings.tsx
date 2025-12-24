@@ -270,7 +270,7 @@ export const SettingsPage = memo(function SettingsPage() {
             {/* About */}
             <Panel>
               <h2 className="mb-2 text-lg font-semibold text-white">About</h2>
-              <h3 className="text-xl font-bold text-white">CtrlLab Pro</h3>
+              <h3 className="text-xl font-bold text-white">JoyScope</h3>
               <p className="mt-2 text-sm text-white/50">
                 Professional controller diagnostics for Xbox, PlayStation, Switch, and standard
                 gamepads.

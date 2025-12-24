@@ -1,8 +1,8 @@
 {
-  "name": "ctrllab-pro",
+  "name": "joyscope",
   "version": "1.0.0",
   "description": "Professional browser-based gamepad diagnostics and testing tool",
-  "homepage": "https://YOUR_USERNAME.github.io/controller_tester",
+  "homepage": "https://YOUR_USERNAME.github.io/joyscope",
   "type": "module",
   "scripts": {
     "dev": "vite",
