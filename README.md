@@ -25,7 +25,7 @@ Professional browser-based gamepad diagnostics and testing tool for Xbox, PlaySt
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/joyscope.git
+git clone https://github.com/laraib-sidd/joyscope.git
 cd joyscope
 
 # Install dependencies

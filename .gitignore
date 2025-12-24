@@ -2,6 +2,9 @@
 node_modules/*
 .pnpm-store/
 
+# Documentation (keep local only)
+docs/
+
 # Build output
 dist/
 dist-ssr/

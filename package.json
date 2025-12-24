@@ -2,7 +2,7 @@
   "name": "joyscope",
   "version": "1.0.0",
   "description": "Professional browser-based gamepad diagnostics and testing tool",
-  "homepage": "https://YOUR_USERNAME.github.io/joyscope",
+  "homepage": "https://laraib-sidd.github.io/joyscope",
   "type": "module",
   "scripts": {
     "dev": "vite",
